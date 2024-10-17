@@ -1,5 +1,6 @@
 package com.empleado.api.empleados.api;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -87,8 +89,10 @@ public class EmpleadosApi {
     @ApiParam(value = "Lista de empleados a insertar")
 	@PostMapping
 	public ResponseEntity<List<Empleado>> guardarUnoOVarios(@Valid @RequestBody List<Empleado> listaEmpleado) throws Throwable {
-		
-		return ResponseEntity.ok(empleadoService.saveAll(listaEmpleado));
+    	;
+    	return ResponseEntity.status(HttpStatus.CREATED).header("X-Created-Resources", "Empleados")
+                .body(empleadoService.saveAll(listaEmpleado));
+    	
 	}
 	
 }

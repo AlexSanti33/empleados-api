@@ -47,8 +47,6 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 	public List<Empleado> saveAll(List<Empleado> listaEmplados) throws Throwable {
 		log.info("Ejecutando: {} metodo saveAll");
 		return Optional.ofNullable(empleadoRepository.saveAll(listaEmplados)).orElseThrow(()-> new Exception());
-		
-		
 	}
 
 }
